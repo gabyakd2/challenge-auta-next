@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themeColor";
+import Navbar from "./components/navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <Navbar />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
