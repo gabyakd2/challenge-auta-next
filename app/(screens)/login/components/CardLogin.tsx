@@ -1,11 +1,12 @@
 "use client"
 import { useState } from "react";
-import { Button, TextField } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
-import styles from "./card-login.module.css";
+import { Button, TextField } from "@mui/material";
 import { textFieldStylesEmail, textFieldStylesPassword } from "./InputsStyles";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import styles from "./card-login.module.css";
 // Importacion de firebase
 import { aplicationFirebase } from "@/app/credentials";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -20,12 +21,14 @@ interface IInputs {
 function CardLogin() {
   const [ errorLogin, setErrorLogin ] = useState<string>("");
   const { register, handleSubmit, watch , formState: { errors }, } = useForm<IInputs>();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<IInputs> = async (data) => {
     const email = watch("email");
     const password = watch("password");
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      router.push("/");
     } catch (error) {
       setErrorLogin("El usuario o contraseña no coinciden");
     }

@@ -1,10 +1,11 @@
 "use client";
-import styles from "./card-register.module.css";
 import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
-import { checkBoxStyle, textFieldStyles } from "./InputsStyles";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { checkBoxStyle, textFieldStyles } from "./InputsStyles";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./card-register.module.css";
 // imports de firebase
 import { aplicationFirebase, db } from "../../../credentials";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -20,11 +21,8 @@ interface IInputs {
 
 function CardRegister() {
   // const [errorLogin, setErrorLogin] = useState<string>("");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<IInputs>();
+  const router = useRouter()
 
   const onSubmit: SubmitHandler<IInputs> = async (data) => {
     const {
@@ -46,6 +44,7 @@ function CardRegister() {
         emailUserRegister,
         passwordUserRegister,
       });
+      router.push("/")
       console.log("El usuario fue registrado");
     } catch (error) {
       console.error(error);
