@@ -1,0 +1,11 @@
+.navbar{
+  width: 100%;
+  z-index: 1000;
+  height: 15%;
+  padding-top: 1%;
+  border-bottom: 1px solid white;
+
+  @media (max-width: 550px) {
+    padding-top: 6%;
+  }
+}

@@ -3,6 +3,8 @@ import { useState } from "react";
 //Importaciones de firebase
 import { aplicationFirebase } from "@/app/credentials";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import HeaderHome from "./components/headerHome/HeaderHome";
+import CardList from "./components/cardList/CardList";
 const auth = getAuth(aplicationFirebase);
 signOut(auth).then(() => {
   // Sign-out successful.
@@ -22,7 +24,8 @@ onAuthStateChanged(auth, (userFirebase) => {
 console.log(username)
   return (
     <div>
-      <p>HOME</p>
+      <HeaderHome />
+      <CardList />
       <button onClick={() => signOut(auth)}>Logout</button>
     </div>
   )

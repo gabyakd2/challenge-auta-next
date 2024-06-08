@@ -8,7 +8,7 @@ const theme = createTheme({
       // Puedes agregar otras tonalidades si lo deseas
     },
     secondary: {
-      main: "#4caf50",
+      main: "#0074E8",
     },
   },
 });
