@@ -3,12 +3,13 @@ import { AppBar, Box, Toolbar, Typography, Container, Button, Tooltip, GlobalSty
 import Image from "next/image";
 import styles from "./navbar.module.css";
 import MenuList from "./MenuList";
+import Link from "next/link";
 
 const pages: string[] = ["Modelos", "Ficha de modelo"];
 
 function Navbar() {
   return (
-    <AppBar position="absolute" color="transparent" className={styles.navbar}>
+    <AppBar color="transparent" className={styles.navbar}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Typography
@@ -71,9 +72,17 @@ function Navbar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="">
-              <div className="flex align-items-center">
-              <GlobalStyles styles={{ body: { paddingRight: "0 !important" } }} />
+              <div className={styles.buttonsUserAndAddCar}>
+                <GlobalStyles styles={{ body: { paddingRight: "0 !important" } }} />
                 <MenuList />
+                {/* HACER VALIDACION: SI EL USUARIO ES ADMIN QUE LE RENDERICE ESTE BOTON */}
+                <Link href="/add-car/add-car-to-catalogue">
+                  <Button
+                    sx={{ my: 2, color: "white"}}
+                  >
+                    <p>Agregar auto</p>
+                  </Button>
+                </Link>
               </div>
             </Tooltip>
           </Box>

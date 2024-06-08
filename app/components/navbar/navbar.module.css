@@ -14,3 +14,7 @@
   display: flex;
   gap: 7px;
 }
+
+.buttonsUserAndAddCar {
+  display: flex;
+}
