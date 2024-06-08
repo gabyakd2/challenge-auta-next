@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import styles from "./card-register.module.css";
 import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { checkBoxStyle, textFieldStyles } from "./InputsStyles";
@@ -19,24 +19,38 @@ interface IInputs {
 }
 
 function CardRegister() {
-  const { register, handleSubmit } = useForm<IInputs>();
+  // const [errorLogin, setErrorLogin] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IInputs>();
 
   const onSubmit: SubmitHandler<IInputs> = async (data) => {
-    const { nameUserRegister, lastnameUserRegister, emailUserRegister, passwordUserRegister } = data;
+    const {
+      nameUserRegister,
+      lastnameUserRegister,
+      emailUserRegister,
+      passwordUserRegister,
+    } = data;
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, emailUserRegister, passwordUserRegister)
-      const user = userCredential.user
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        emailUserRegister,
+        passwordUserRegister
+      );
+      const user = userCredential.user;
       await setDoc(doc(db, "users", user.uid), {
         nameUserRegister,
         lastnameUserRegister,
         emailUserRegister,
-        passwordUserRegister
-      })
-    console.log("El usuario fue registrado")
+        passwordUserRegister,
+      });
+      console.log("El usuario fue registrado");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
   return (
     <div className={styles.containerCardRegister}>
       <div className={styles.containerRegisterInputs}>
@@ -55,7 +69,23 @@ function CardRegister() {
               label="Nombre"
               variant="outlined"
               fullWidth
-              {...register("nameUserRegister")}
+              error={!!errors.nameUserRegister}
+              helperText={errors.nameUserRegister?.message}
+              {...register("nameUserRegister", {
+                minLength: {
+                  value: 3,
+                  message: "El nombre debe tener al menos 3 caracteres",
+                },
+                maxLength: {
+                  value: 25,
+                  message: "El nombre debe tener como maximo 25 caracteres",
+                },
+                pattern: {
+                  value: /^[a-zA-ZÀ-ÿ\s]+$/,
+                  message: "El nombre solo puede contener letras y espacios",
+                },
+                required: "El nombre es obligatorio",
+              })}
               sx={textFieldStyles}
             />
             <TextField
@@ -63,7 +93,23 @@ function CardRegister() {
               label="Apellido"
               variant="outlined"
               fullWidth
-              {...register("lastnameUserRegister")}
+              error={!!errors.lastnameUserRegister}
+              helperText={errors.lastnameUserRegister?.message}
+              {...register("lastnameUserRegister", {
+                minLength: {
+                  value: 3,
+                  message: "El apellido debe tener al menos 3 caracteres",
+                },
+                maxLength: {
+                  value: 25,
+                  message: "El apellido debe tener como maximo 25 caracteres",
+                },
+                pattern: {
+                  value: /^[a-zA-ZÀ-ÿ\s]+$/,
+                  message: "El apellido solo puede contener letras y espacios",
+                },
+                required: "El apellido es obligatorio",
+              })}
               sx={textFieldStyles}
             />
             <TextField
@@ -71,7 +117,20 @@ function CardRegister() {
               label="Correo electronico"
               variant="outlined"
               fullWidth
-              {...register("emailUserRegister")}
+              error={!!errors.emailUserRegister}
+              helperText={errors.emailUserRegister?.message}
+              {...register("emailUserRegister", {
+                required: "El correo electronico es obligatorio",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "El formato de correo electronico no es valido",
+                },
+                maxLength: {
+                  value: 50,
+                  message:
+                    "El correo electrónico no puede tener más de 50 caracteres",
+                },
+              })}
               sx={textFieldStyles}
             />
             <TextField
@@ -80,7 +139,25 @@ function CardRegister() {
               variant="outlined"
               type="password"
               fullWidth
-              {...register("passwordUserRegister")}
+              error={!!errors.passwordUserRegister}
+              helperText={errors.passwordUserRegister?.message}
+              {...register("passwordUserRegister", {
+                required: "La contraseña es obligatoria",
+                minLength: {
+                  value: 8,
+                  message: "La contraseña debe tener al menos 8 caracteres",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "La contraseña debe tener como maximo 20 caracteres",
+                },
+                pattern: {
+                  value:
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                  message:
+                    "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número",
+                },
+              })}
               sx={textFieldStyles}
             />
           </div>

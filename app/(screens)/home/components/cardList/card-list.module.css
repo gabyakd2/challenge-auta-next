@@ -1,0 +1,15 @@
+.containerMainCardList {
+  display: flex;
+  justify-content: center;
+  margin: 5% 0px;
+}
+
+.gridListCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+
+  @media (min-width: 930px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

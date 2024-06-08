@@ -1,0 +1,25 @@
+.titleCar {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+/* .datesVehicle {
+  display: flex;
+  justify-content: space-around;
+  margin: 6% 0 6% 0;
+} */
+
+.descriptionCard {
+  text-align: center;
+  font-weight: semibold;
+  font-size: 17px;
+}
+
+.containerButton {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
