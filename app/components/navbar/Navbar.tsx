@@ -1,14 +1,8 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+import { AppBar, Box, Toolbar, Typography, Container, Button, Tooltip, GlobalStyles } from "@mui/material";
 import Image from "next/image";
 import styles from "./navbar.module.css";
-// import ListMenu from "./components/ListMenu";
+import MenuList from "./MenuList";
 
 const pages: string[] = ["Modelos", "Ficha de modelo"];
 
@@ -78,8 +72,8 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="">
               <div className="flex align-items-center">
-                <p className="text-black mt-2">Menú</p>
-                {/* <ListMenu /> */}
+              <GlobalStyles styles={{ body: { paddingRight: "0 !important" } }} />
+                <MenuList />
               </div>
             </Tooltip>
           </Box>

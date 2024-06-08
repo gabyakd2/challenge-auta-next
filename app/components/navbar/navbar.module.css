@@ -5,7 +5,12 @@
   padding-top: 1%;
   border-bottom: 1px solid white;
 
-  @media (max-width: 550px) {
-    padding-top: 6%;
+  @media (max-width: 600px) {
+    padding-top: 4%;
   }
+}
+
+.itemMenu {
+  display: flex;
+  gap: 7px;
 }
