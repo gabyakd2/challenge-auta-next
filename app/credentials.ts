@@ -23,7 +23,9 @@ export const aplicationFirebase = initializeApp(firebaseConfig);
 export const db = getFirestore(aplicationFirebase);
 export const storage = getStorage(aplicationFirebase);
 
-export async function uploadImageCardCars(imgCar) { //TODO TIPAR IMGCAR
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function uploadImageCardCars(imgCar: any) { //TODO TIPAR IMGCAR
   if(!imgCar){
     console.error("No se cargo ninguna imagen")
   }
