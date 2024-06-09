@@ -6,8 +6,7 @@ import styles from "./navbar.module.css";
 import Link from "next/link";
 import { useAuth } from "@/app/hook/useAuth";
 import MenuList from "./components/MenuList";
-
-const pages: string[] = ["Modelos", "Ficha de modelo"];
+import ListFavoritesCarts from "./components/ListFavoritesCarts/ListFavoritesCarts";
 
 function Navbar() {
   const { userSesion } = useAuth();
@@ -62,7 +61,7 @@ function Navbar() {
             />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {/* {pages.map((page) => (
               <Button
                 key={page}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -70,7 +69,7 @@ function Navbar() {
               >
                 <p>{page}</p>
               </Button>
-            ))}
+            ))} */}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -88,6 +87,11 @@ function Navbar() {
                     </Button>
                   </Link>
                 ) : null}
+                {
+                  userSesion && !userSesion?.isAdmin ? (
+                    <ListFavoritesCarts />
+                  ): null
+                }
               </div>
             </Tooltip>
           </Box>

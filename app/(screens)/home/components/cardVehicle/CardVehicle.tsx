@@ -13,11 +13,12 @@ import { db } from "@/app/credentials";
 
 interface IProps {
   addCarToFavorite: (car: IDataCard) => void;
+  removeCarFromFavorite: (id: string) => void;
 }
 
 interface CombinedProps extends IDataCard, IProps {}
 
-function CardVehicle({ id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite, addCarToFavorite }: CombinedProps) {
+function CardVehicle({ id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite, addCarToFavorite, removeCarFromFavorite }: CombinedProps) {
   const [favorite, setFavorite] = useState(isFavorite);
   const { userSesion } = useAuth();
 
@@ -31,9 +32,17 @@ function CardVehicle({ id, imageCard, titleCard, descr1, descr2, descr3, descr4,
     if (!id) return console.error("No se encontro el id del carro");
     try {
       const cardRef = doc(db, "carsCatalogue", id);
+      const newFavoriteState = !favorite;
       await updateDoc(cardRef, { isFavorite: !favorite });
       setFavorite(!favorite);
-      addCarToFavorite({ id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite: !favorite });
+      //Si el auto no esta marcado o si se desmarca como favorito, se elimina de la lista de favoritos
+      if(!newFavoriteState) {
+        removeCarFromFavorite(id)
+      }
+      //Si el auto esta marcado o si se marca como favorito, se agrega a la lista de favoritos
+      if(newFavoriteState){
+        addCarToFavorite({ id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite: !favorite });
+      }
     } catch (error) {
       console.error(error);
     }
