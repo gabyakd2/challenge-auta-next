@@ -16,6 +16,7 @@ async function CardList() {
           vehiclesList?.map(({id, imageCard, titleCard, descr1, descr2, descr3, descr4}: IDataCard) => (
             <div key={id}>
               <CardVehicle 
+                id={id}
                 imageCard={imageCard} 
                 titleCard={titleCard} 
                 descr1={descr1} 

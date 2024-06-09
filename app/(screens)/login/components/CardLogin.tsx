@@ -43,10 +43,13 @@ function CardLogin() {
   };
 
   const signInWithGoogle = async () => {
-    const infoAccountGoogle = await signInWithPopup(auth, providerGoogle);
-    if (infoAccountGoogle.user) {
-      router.push("/");
-    } else {
+    try {
+      const infoAccountGoogle = await signInWithPopup(auth, providerGoogle);
+      if (infoAccountGoogle.user) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.error(error)
       setErrorLogin("El usuario o contraseña no coinciden");
     }
   };
