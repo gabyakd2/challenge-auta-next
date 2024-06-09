@@ -20,19 +20,17 @@ interface IInputs {
 
 function CardLogin() {
   const [ errorLogin, setErrorLogin ] = useState<string>("");
-  const { register, handleSubmit, watch , formState: { errors }, } = useForm<IInputs>();
+  const { register, handleSubmit , formState: { errors }, } = useForm<IInputs>();
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<IInputs> = async (data) => {
-    const email = watch("email");
-    const password = watch("password");
+  const onSubmit: SubmitHandler<IInputs> = async ({email, password}) => {
+    //Hace autenticacion si el email y contraseña coinciden
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/");
     } catch (error) {
       setErrorLogin("El usuario o contraseña no coinciden");
     }
-    console.log(data);
   };
 
   return (
