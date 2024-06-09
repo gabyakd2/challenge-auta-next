@@ -1,9 +1,11 @@
 "use client"
-import { ReactNode, createContext, useContext, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
+import { IDataCard } from "../interfaces/IDataCard";
 
+//Definicion del tipo de datos que tendra el contexto
 interface IContextType {
-  favorites: Record<string, boolean>;
-  setFavorite: (id: string, value: boolean) => void;
+  favorites: IDataCard[];
+  setFavorites: Dispatch<SetStateAction<IDataCard[]>>;
 }
 
 const FavoriteContext = createContext<IContextType | undefined >(undefined)
@@ -13,15 +15,9 @@ interface ProviderProps {
 }
 
 function FavoritesProvider({children}: ProviderProps) {
-  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
-  const setFavorite = (id: string, value: boolean) => {
-    setFavorites(prevFavorites => ({
-      ...prevFavorites,
-      [id]: value,
-    }));
-  };
+  const [favorites, setFavorites] = useState<IDataCard[]>([]);
   return (
-    <FavoriteContext.Provider value={{favorites, setFavorite}}>
+    <FavoriteContext.Provider value={{favorites, setFavorites}}>
       {children}
     </FavoriteContext.Provider>
   )

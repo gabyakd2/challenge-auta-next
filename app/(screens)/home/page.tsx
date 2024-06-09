@@ -7,14 +7,10 @@ import { useState } from "react";
 
 
 function HomeMain() {
-  // const { listVehicles } = useGetVehiclesList();
-  // const [filterType, setFilterType] = useState<string>("todos");
   const [ filters, setFilters ] = useState({
     selectTypeCard: "todos"
   })
-  // const filteredVehicles = listVehicles.filter(
-  //   (vehicle) => filterType === "todos" || vehicle.selectTypeCard?.toLowerCase() === filterType
-  // );
+
   return (
     <div>
       <HeaderHome />

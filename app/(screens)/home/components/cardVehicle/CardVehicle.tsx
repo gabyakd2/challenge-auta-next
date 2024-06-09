@@ -11,7 +11,13 @@ import { useAuth } from "@/app/hook/useAuth";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/app/credentials";
 
-function CardVehicle({ id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite }: IDataCard) {
+interface IProps {
+  addCarToFavorite: (car: IDataCard) => void;
+}
+
+interface CombinedProps extends IDataCard, IProps {}
+
+function CardVehicle({ id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite, addCarToFavorite }: CombinedProps) {
   const [favorite, setFavorite] = useState(isFavorite);
   const { userSesion } = useAuth();
 
@@ -20,26 +26,29 @@ function CardVehicle({ id, imageCard, titleCard, descr1, descr2, descr3, descr4,
     window.location.reload();
   };
 
+  //Actualiza en la db la propiedad isFavorite al estado contrario
   const changeFavorite = async () => {
     if (!id) return console.error("No se encontro el id del carro");
     try {
       const cardRef = doc(db, "carsCatalogue", id);
       await updateDoc(cardRef, { isFavorite: !favorite });
       setFavorite(!favorite);
+      addCarToFavorite({ id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite: !favorite });
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ maxWidth: 400, height: "100%" }}>
+        {/* <button onClick={() => addCarToFavorite(objectCar)}>pseudofavorito</button> */}
         <CardContent>
           {
             userSesion?.isAdmin === false && (
               favorite ? (
                 <Button variant="contained" onClick={changeFavorite}>
-                  <FavoriteIcon />
+                  <FavoriteIcon color="error" />
                 </Button>
               ) : (
                 <Button variant="contained" onClick={changeFavorite}>
