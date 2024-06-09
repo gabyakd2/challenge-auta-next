@@ -5,10 +5,10 @@ import { useAuth } from "@/app/hook/useAuth";
 import { useSignOut } from "@/app/hook/useSignOut";
 
 function HomeMain() {
-  const {username} = useAuth();
+  const { userSesion } = useAuth();
   const { error, handleSignOut } = useSignOut();
 
-console.log(username)
+console.log(userSesion)
   return (
     <div>
       <HeaderHome />
