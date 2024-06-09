@@ -1,27 +1,14 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IDataCard } from "@/app/interfaces/IDataCard";
+import { useGetVehiclesList } from "@/app/hook/useGetVehicleList";
 import CardVehicle from "../cardVehicle/CardVehicle";
 import styles from "./card-list.module.css";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/app/credentials";
 
 function CardList() {
-  const [listVehicles, setListVehicles] = useState<IDataCard[]>();
-
-  useEffect(() => {
-    const getVehicles = async () => {
-      const refVehiclesCollection = collection(db, "carsCatalogue");
-      const vehiclesDocs = await getDocs(refVehiclesCollection);
-      const vehiclesList = vehiclesDocs.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as IDataCard[]
-      setListVehicles(vehiclesList);
-    };
-    getVehicles();
-  }, []);
-  console.log(listVehicles);
+  const { listVehicles, loading, error } = useGetVehiclesList();
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
   return (
     <div className={styles.containerMainCardList}>
       <div className={styles.gridListCard}>
