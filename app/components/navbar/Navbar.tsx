@@ -1,13 +1,16 @@
+"use client"
 import React from "react";
 import { AppBar, Box, Toolbar, Typography, Container, Button, Tooltip, GlobalStyles } from "@mui/material";
 import Image from "next/image";
 import styles from "./navbar.module.css";
 import MenuList from "./MenuList";
 import Link from "next/link";
+import { useAuth } from "@/app/hook/useAuth";
 
 const pages: string[] = ["Modelos", "Ficha de modelo"];
 
 function Navbar() {
+  const { userSesion } = useAuth();
   return (
     <AppBar position="absolute" color="transparent" className={styles.navbar}>
       <Container maxWidth="lg">
@@ -73,16 +76,18 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="">
               <div className={styles.buttonsUserAndAddCar}>
-                <GlobalStyles styles={{ body: { paddingRight: "0 !important" } }} />
+                <GlobalStyles
+                  styles={{ body: { paddingRight: "0 !important" } }}
+                />
                 <MenuList />
                 {/* HACER VALIDACION: SI EL USUARIO ES ADMIN QUE LE RENDERICE ESTE BOTON */}
-                <Link href="/add-car/add-car-to-catalogue">
-                  <Button
-                    sx={{ my: 2, color: "white"}}
-                  >
-                    <p>Agregar auto</p>
-                  </Button>
-                </Link>
+                {userSesion?.isAdmin ? (
+                  <Link href="/add-car/add-car-to-catalogue">
+                    <Button sx={{ my: 2, color: "white" }}>
+                      <p>Agregar auto</p>
+                    </Button>
+                  </Link>
+                ) : null}
               </div>
             </Tooltip>
           </Box>

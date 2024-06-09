@@ -1,3 +1,4 @@
+//OBTENER LISTA DE VEHICULOS (CLIENT SIDE)
 import { useState, useEffect } from "react";
 import { IDataCard } from "@/app/interfaces/IDataCard";
 import { collection, getDocs } from "firebase/firestore";
