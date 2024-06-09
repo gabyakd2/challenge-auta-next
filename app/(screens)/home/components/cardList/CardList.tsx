@@ -8,7 +8,7 @@ import { getListVehicles } from "./getListVehicles";
 
 async function CardList() {
   const vehiclesList = await getListVehicles();
-  
+  console.log(vehiclesList)
   return (
     <div className={styles.containerMainCardList}>
       <div className={styles.gridListCard}>
