@@ -14,16 +14,10 @@ import { db, uploadImageCardCars } from "@/app/credentials";
 import { selectMui, textFieldStyles } from "./InputsStyles";
 import { IDataCard } from "@/app/interfaces/IDataCard";
 
-
 function FormAddCarToCatalogue() {
   const typesCars = ["SUV", "Auto", "Furgoneta", "Furgoneta pequeña"];
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<IDataCard>();
-  //Añade un documento auto a la coleccion "carsCatalogue"
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<IDataCard>();
+  //Añade un documento (auto) a la coleccion "carsCatalogue"
   const addVehicleToCard = async (dataObjectCard: IDataCard) => {
     await addDoc(collection(db, "carsCatalogue"), dataObjectCard);
   };

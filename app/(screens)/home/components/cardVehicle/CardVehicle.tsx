@@ -15,8 +15,6 @@ function CardVehicle({imageCard, titleCard, descr1, descr2, descr3, descr4}: IDa
             style={{ height: "20%", marginBottom: "30px" }}
           />
           <p className={styles.titleCar}>{titleCard}</p>
-          {/* <div className={styles.datesVehicle}>
-          </div> */}
           <div className={styles.descriptionCard}>
             <p>{descr1}</p>
             <p>{descr2}</p>
