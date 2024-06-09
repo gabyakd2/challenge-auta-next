@@ -34,3 +34,21 @@ export const textFieldStyles = {
     fontWeight: "bold",
   },
 };
+
+export const selectMui = {
+  "& .MuiSvgIcon-root": {
+    color: "white",
+  },
+  "& label.Mui-error": {
+    color: "#F65D33",
+  },
+  // Estilos de color de borde en error
+  "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#F65D33", // Cambia el color del borde cuando está en modo outlined
+  },
+  // Estilos del texto en error
+  "& .MuiFormHelperText-root.Mui-error": {
+    color: "#F65D33",
+    fontWeight: "bold",
+  },
+};
