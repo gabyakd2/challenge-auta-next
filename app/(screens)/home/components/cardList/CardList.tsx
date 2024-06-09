@@ -23,6 +23,13 @@ interface IProps {
     const addCarToFavorite = (car: IDataCard) => {
       setFavorites((prevState) => [...prevState, car]);
     }
+
+    const removeCarFromFavorite = (id: string) => {
+      setFavorites((prevFavorites) => {
+        return prevFavorites.filter((car) => car.id !== id);
+      });
+    }
+
   return (
     <div className={styles.containerMainCardList}>
       <div className={styles.gridListCard}>
@@ -39,6 +46,7 @@ interface IProps {
                 descr4={descr4} 
                 isFavorite={isFavorite}
                 addCarToFavorite={addCarToFavorite}
+                removeCarFromFavorite={removeCarFromFavorite}
                 />
             </div>
           ))
