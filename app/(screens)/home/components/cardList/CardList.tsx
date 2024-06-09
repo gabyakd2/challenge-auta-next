@@ -4,6 +4,7 @@ import { IDataCard } from "@/app/interfaces/IDataCard";
 import { useGetVehiclesList } from "@/app/hook/useGetVehicleList";
 import CardVehicle from "../cardVehicle/CardVehicle";
 import styles from "./card-list.module.css";
+import { useFavoriteContext } from "@/app/context/FavoritesCartsContext";
 // import { getListVehicles } from "./getListVehicles";
 
 interface IProps {
@@ -12,11 +13,16 @@ interface IProps {
 
  function CardList({filters}: IProps) {
 
+  const { setFavorites } = useFavoriteContext()
    // const vehiclesList = await getListVehicles();
    const { listVehicles } = useGetVehiclesList();
     const filterVehicles = listVehicles.filter(vehicle => (
       filters.selectTypeCard === "todos" || vehicle.selectTypeCard?.toLowerCase() === filters.selectTypeCard
     ))
+
+    const addCarToFavorite = (car: IDataCard) => {
+      setFavorites((prevState) => [...prevState, car]);
+    }
   return (
     <div className={styles.containerMainCardList}>
       <div className={styles.gridListCard}>
@@ -32,6 +38,7 @@ interface IProps {
                 descr3={descr3} 
                 descr4={descr4} 
                 isFavorite={isFavorite}
+                addCarToFavorite={addCarToFavorite}
                 />
             </div>
           ))
