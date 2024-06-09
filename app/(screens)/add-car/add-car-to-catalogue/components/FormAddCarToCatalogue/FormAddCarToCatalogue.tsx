@@ -19,7 +19,11 @@ function FormAddCarToCatalogue() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<IDataCard>();
   //Añade un documento (auto) a la coleccion "carsCatalogue"
   const addVehicleToCard = async (dataObjectCard: IDataCard) => {
-    await addDoc(collection(db, "carsCatalogue"), dataObjectCard);
+    const vehicleCardCarWithFavorite = {
+      ...dataObjectCard,
+      isFavorte: false
+    }
+    await addDoc(collection(db, "carsCatalogue"), vehicleCardCarWithFavorite);
   };
 
   const onSubmit: SubmitHandler<IDataCard> = async (data) => {

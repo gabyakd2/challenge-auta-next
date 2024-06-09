@@ -3,9 +3,9 @@ import React from "react";
 import { AppBar, Box, Toolbar, Typography, Container, Button, Tooltip, GlobalStyles } from "@mui/material";
 import Image from "next/image";
 import styles from "./navbar.module.css";
-import MenuList from "./MenuList";
 import Link from "next/link";
 import { useAuth } from "@/app/hook/useAuth";
+import MenuList from "./components/MenuList";
 
 const pages: string[] = ["Modelos", "Ficha de modelo"];
 

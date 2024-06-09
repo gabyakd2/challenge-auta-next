@@ -1,3 +1,4 @@
+//OBTENER LISTA SERVER SIDE
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/app/credentials";
 import { IDataCard } from "@/app/interfaces/IDataCard";
