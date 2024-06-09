@@ -1,26 +1,27 @@
 import React from "react";
 import { CardContent, CardMedia, Button, Grid, Card } from "@mui/material";
 import styles from "./card-vehicle.module.css";
+import { IDataCard } from "@/app/interfaces/IDataCard";
 
-function CardVehicle() {
+function CardVehicle({imageCard, titleCard, descr1, descr2, descr3, descr4}: IDataCard) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ maxWidth: 400, height: "100%" }}>
         <CardContent>
           <CardMedia
             component="img"
-            image="https://www.peugeot.com.ar/content/dam/peugeot/argentina/b2c/our-range/208-roadtrip/RoadtripBaseballcard.png?imwidth=1920"
-            alt="nombre auto"
+            image={imageCard}
+            alt={titleCard}
             style={{ height: "20%", marginBottom: "30px" }}
           />
-          <p className={styles.titleCar}>PEUGEOT 208</p>
+          <p className={styles.titleCar}>{titleCard}</p>
           {/* <div className={styles.datesVehicle}>
           </div> */}
           <div className={styles.descriptionCard}>
-            <p>Nuevo i-Cockpit 3D®</p>
-            <p>Caja Automática secuencial</p>
-            <p>Tecnología ADAS</p>
-            <p>Alerón trasero negro brillante</p>
+            <p>{descr1}</p>
+            <p>{descr2}</p>
+            <p>{descr3}</p>
+            <p>{descr4}</p>
           </div>
         </CardContent>
         <div className={styles.containerButton}>

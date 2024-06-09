@@ -9,7 +9,7 @@ const pages: string[] = ["Modelos", "Ficha de modelo"];
 
 function Navbar() {
   return (
-    <AppBar color="transparent" className={styles.navbar}>
+    <AppBar position="absolute" color="transparent" className={styles.navbar}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Typography
