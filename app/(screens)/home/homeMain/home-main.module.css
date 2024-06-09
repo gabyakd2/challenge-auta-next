@@ -1,0 +1,14 @@
+.containerFormMain{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.textTitleForm{
+  font-size: 30px;
+  font-weight: bold;
+  color: #B5B3A7;
+  margin-bottom: 10px;
+}

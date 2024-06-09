@@ -1,23 +1,13 @@
-"use client"
-import HeaderHome from "./components/headerHome/HeaderHome";
-import CardList from "./components/cardList/CardList";
-import ListFilters from "./components/listFilters/ListFilters";
-// import { useGetVehiclesList } from "@/app/hook/useGetVehicleList";
-import { useState } from "react";
+import HomeMain from "./homeMain/HomeMain";
 
 
-function HomeMain() {
-  const [ filters, setFilters ] = useState({
-    selectTypeCard: "todos"
-  })
+function HomePage() {
 
   return (
     <div>
-      <HeaderHome />
-      <ListFilters setFilters={setFilters} />
-      <CardList filters={filters} />      
+      <HomeMain />
     </div>
   )
 }
 
-export default HomeMain
+export default HomePage
