@@ -1,23 +1,22 @@
 "use client";
-
 import React from "react";
-import { TextField, Button } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  FormHelperText,
+} from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./form-add-car-to-catalogue.module.css";
 import { collection, addDoc } from "firebase/firestore";
 import { db, uploadImageCardCars } from "@/app/credentials";
-import { textFieldStyles } from "./InputsStyles";
+import { selectMui, textFieldStyles } from "./InputsStyles";
+import { IDataCard } from "@/app/interfaces/IDataCard";
 
-export interface IDataCard {
-  descr1: string;
-  descr2: string;
-  descr3: string;
-  descr4: string;
-  imageCard: string | undefined;
-  titleCard: string;
-}
 
 function FormAddCarToCatalogue() {
+  const typesCars = ["SUV", "Auto", "Furgoneta", "Furgoneta pequeña"];
   const {
     register,
     handleSubmit,
@@ -109,8 +108,8 @@ function FormAddCarToCatalogue() {
                 message: "La descripcion debe tener al menos 3 caracteres",
               },
               maxLength: {
-                value: 30,
-                message: "La descripcion no puede tener mas de 30 caracteres",
+                value: 50,
+                message: "La descripcion no puede tener mas de 50 caracteres",
               },
             })}
           />
@@ -130,8 +129,8 @@ function FormAddCarToCatalogue() {
                 message: "La descripcion debe tener al menos 3 caracteres",
               },
               maxLength: {
-                value: 30,
-                message: "La descripcion no puede tener mas de 30 caracteres",
+                value: 50,
+                message: "La descripcion no puede tener mas de 50 caracteres",
               },
             })}
           />
@@ -151,8 +150,8 @@ function FormAddCarToCatalogue() {
                 message: "La descripcion debe tener al menos 3 caracteres",
               },
               maxLength: {
-                value: 30,
-                message: "La descripcion no puede tener mas de 30 caracteres",
+                value: 50,
+                message: "La descripcion no puede tener mas de 50 caracteres",
               },
             })}
           />
@@ -172,11 +171,28 @@ function FormAddCarToCatalogue() {
                 message: "La descripcion debe tener al menos 3 caracteres",
               },
               maxLength: {
-                value: 30,
-                message: "La descripcion no puede tener mas de 30 caracteres",
+                value: 50,
+                message: "La descripcion no puede tener mas de 50 caracteres",
               },
             })}
           />
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            fullWidth
+            sx={selectMui}
+            error={!!errors.selectTypeCard}
+            {...register("selectTypeCard", {
+              required: "El tipo del vehículo es obligatorio",
+            })}
+          >
+            {typesCars.map((typeCar) => (
+              <MenuItem value={typeCar} key={typeCar}>
+                {typeCar}
+              </MenuItem>
+            ))}
+            <FormHelperText>{!!errors.selectTypeCard}</FormHelperText>
+          </Select>
           <div className={styles.buttonCreateCar}>
             <Button
               variant="contained"
