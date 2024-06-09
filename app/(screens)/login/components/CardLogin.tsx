@@ -1,15 +1,20 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
+import GoogleIcon from "@mui/icons-material/Google";
 import { textFieldStylesEmail, textFieldStylesPassword } from "./InputsStyles";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./card-login.module.css";
 // Importacion de firebase
-import { aplicationFirebase } from "@/app/credentials";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { aplicationFirebase, providerGoogle } from "@/app/credentials";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 
 const auth = getAuth(aplicationFirebase);
 
@@ -19,16 +24,29 @@ interface IInputs {
 }
 
 function CardLogin() {
-  const [ errorLogin, setErrorLogin ] = useState<string>("");
-  const { register, handleSubmit , formState: { errors }, } = useForm<IInputs>();
+  const [errorLogin, setErrorLogin] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IInputs>();
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<IInputs> = async ({email, password}) => {
+  const onSubmit: SubmitHandler<IInputs> = async ({ email, password }) => {
     //Hace autenticacion si el email y contraseña coinciden
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/");
     } catch (error) {
+      setErrorLogin("El usuario o contraseña no coinciden");
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    const infoAccountGoogle = await signInWithPopup(auth, providerGoogle);
+    if (infoAccountGoogle.user) {
+      router.push("/");
+    } else {
       setErrorLogin("El usuario o contraseña no coinciden");
     }
   };
@@ -54,7 +72,7 @@ function CardLogin() {
                 fullWidth
                 error={!!errors.email || !!errorLogin}
                 helperText={errors.email?.message}
-                {...register("email", { 
+                {...register("email", {
                   required: "El correo es obligatorio",
                   pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
@@ -75,7 +93,6 @@ function CardLogin() {
                 fullWidth
                 {...register("password", {
                   required: "La contraseña es obligatoria",
-
                 })}
                 sx={textFieldStylesPassword}
               />
@@ -88,6 +105,17 @@ function CardLogin() {
                 sx={{ color: "#864BFA", fontWeight: "bold" }}
               >
                 Ingresar
+              </Button>
+            </div>
+            <p className={styles.textOptionO}>O</p>
+            <div className={styles.buttonSignInGoogle}>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{ color: "#864BFA", fontWeight: "bold" }}
+                onClick={signInWithGoogle}
+              >
+                <GoogleIcon />
               </Button>
             </div>
             {errorLogin && <p className={styles.errorLogin}>{errorLogin}</p>}

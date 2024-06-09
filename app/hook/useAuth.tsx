@@ -1,24 +1,21 @@
 import { aplicationFirebase } from "@/app/credentials";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { useAuthLoggedContext } from "../context/AuthContext";
 
 const auth = getAuth(aplicationFirebase);
-signOut(auth).then(() => {
-  // Sign-out successful.
-}).catch((error) => {
-  console.error(error)
-});
 
 export function useAuth() {
-  const [username, setUsername] = useState<unknown>(null);
+  const { userSesion, setUserSesion } = useAuthLoggedContext();
+
   useEffect(() => {
     onAuthStateChanged(auth, (userFirebase) => {
       if (userFirebase) {
-        setUsername(userFirebase);
+        setUserSesion(userFirebase);
       } else {
-        setUsername(null);
+        setUserSesion(null);
       }
     });
   }, [])
-  return { username };
+  return { userSesion };
 }
