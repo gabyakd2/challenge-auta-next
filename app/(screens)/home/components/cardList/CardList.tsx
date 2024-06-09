@@ -6,16 +6,22 @@ import CardVehicle from "../cardVehicle/CardVehicle";
 import styles from "./card-list.module.css";
 // import { getListVehicles } from "./getListVehicles";
 
- function CardList() {
-  // const vehiclesList = await getListVehicles();
-  const { listVehicles } = useGetVehiclesList();
+interface IProps {
+  filters: {selectTypeCard: string };
+}
 
-  console.log(listVehicles)
+ function CardList({filters}: IProps) {
+
+   // const vehiclesList = await getListVehicles();
+   const { listVehicles } = useGetVehiclesList();
+    const filterVehicles = listVehicles.filter(vehicle => (
+      filters.selectTypeCard === "todos" || vehicle.selectTypeCard?.toLowerCase() === filters.selectTypeCard
+    ))
   return (
     <div className={styles.containerMainCardList}>
       <div className={styles.gridListCard}>
         {
-          listVehicles?.map(({id, imageCard, titleCard, descr1, descr2, descr3, descr4}: IDataCard) => (
+          filterVehicles?.map(({id, imageCard, titleCard, descr1, descr2, descr3, descr4, isFavorite}: IDataCard) => (
             <div key={id}>
               <CardVehicle 
                 id={id}
@@ -24,7 +30,9 @@ import styles from "./card-list.module.css";
                 descr1={descr1} 
                 descr2={descr2} 
                 descr3={descr3} 
-                descr4={descr4} />
+                descr4={descr4} 
+                isFavorite={isFavorite}
+                />
             </div>
           ))
         }

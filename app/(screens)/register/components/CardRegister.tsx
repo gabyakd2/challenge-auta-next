@@ -38,6 +38,7 @@ function CardRegister() {
         lastnameUserRegister,
         emailUserRegister,
         passwordUserRegister,
+        isAdmin: false,
       });
       router.push("/")
       console.log("El usuario fue registrado");

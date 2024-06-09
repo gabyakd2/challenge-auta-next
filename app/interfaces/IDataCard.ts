@@ -6,5 +6,6 @@ export interface IDataCard {
   imageCard: string | undefined;
   titleCard: string;
   selectTypeCard?: string;
-  id?: string
+  id?: string;
+  isFavorite?: boolean;
 }

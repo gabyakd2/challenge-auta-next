@@ -7,7 +7,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import Link from "next/link";
-import styles from "./navbar.module.css";
+import styles from "../navbar.module.css";
 import { useAuth } from "@/app/hook/useAuth";
 
 function MenuList() {
