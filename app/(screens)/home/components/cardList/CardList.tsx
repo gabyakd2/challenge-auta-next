@@ -1,19 +1,19 @@
-"use client"
+
 import React from "react";
 import { IDataCard } from "@/app/interfaces/IDataCard";
-import { useGetVehiclesList } from "@/app/hook/useGetVehicleList";
+// import { useGetVehiclesList } from "@/app/hook/useGetVehicleList";
 import CardVehicle from "../cardVehicle/CardVehicle";
 import styles from "./card-list.module.css";
+import { getListVehicles } from "./getListVehicles";
 
-function CardList() {
-  const { listVehicles, loading, error } = useGetVehiclesList();
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+async function CardList() {
+  const vehiclesList = await getListVehicles();
+  
   return (
     <div className={styles.containerMainCardList}>
       <div className={styles.gridListCard}>
         {
-          listVehicles?.map(({id, imageCard, titleCard, descr1, descr2, descr3, descr4}: IDataCard) => (
+          vehiclesList?.map(({id, imageCard, titleCard, descr1, descr2, descr3, descr4}: IDataCard) => (
             <div key={id}>
               <CardVehicle 
                 imageCard={imageCard} 
