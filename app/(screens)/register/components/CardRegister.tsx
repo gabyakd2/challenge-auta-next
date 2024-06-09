@@ -24,13 +24,7 @@ function CardRegister() {
   const { register, handleSubmit, formState: { errors } } = useForm<IInputs>();
   const router = useRouter()
 
-  const onSubmit: SubmitHandler<IInputs> = async (data) => {
-    const {
-      nameUserRegister,
-      lastnameUserRegister,
-      emailUserRegister,
-      passwordUserRegister,
-    } = data;
+  const onSubmit: SubmitHandler<IInputs> = async ({ nameUserRegister, lastnameUserRegister, emailUserRegister, passwordUserRegister, }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -38,6 +32,7 @@ function CardRegister() {
         passwordUserRegister
       );
       const user = userCredential.user;
+      //Selecciona la coleccion users y le añade el objeto (nuevo usuario)
       await setDoc(doc(db, "users", user.uid), {
         nameUserRegister,
         lastnameUserRegister,
