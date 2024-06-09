@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themeColor";
 import Navbar from "./components/navbar/Navbar";
 import { AuthLoggedProvider } from "./context/AuthContext";
+import { FavoritesProvider } from "./context/FavoritesCartsContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +25,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <AppRouterCacheProvider>
           <AuthLoggedProvider>
-            <ThemeProvider theme={theme}>
-              <Navbar />
-              {children}
-            </ThemeProvider>
+            <FavoritesProvider>
+              <ThemeProvider theme={theme}>
+                <Navbar />
+                {children}
+              </ThemeProvider>
+            </FavoritesProvider>
           </AuthLoggedProvider>
         </AppRouterCacheProvider>
       </body>
