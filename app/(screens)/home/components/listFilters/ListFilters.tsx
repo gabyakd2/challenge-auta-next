@@ -16,7 +16,7 @@ function ListFilters({setFilters}: IProps) {
   }
   return (
     <div className={styles.containerStackFilters}>
-      <Stack spacing={2} direction="row">
+      <Stack spacing={2} direction="row" className={styles.stack}>
         <Button variant="contained" onClick={() => handleChangeTypeCar("todos")}>Todos</Button>
         <Button variant="contained" onClick={() => handleChangeTypeCar("auto")}>Autos</Button>
         <Button variant="contained" onClick={() => handleChangeTypeCar("suv")}>SUVs</Button>
