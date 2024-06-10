@@ -1,6 +1,6 @@
 .containerCardLogin{
   display: flex;
-  width: 70%;
+  width: 80%;
   border-radius: 15px;
   text-align: center;
 }
@@ -22,9 +22,6 @@
 }
 @media screen and (width < 700px) {
   .containerLoginText{
-    /* width: 100%;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 0px; */
     display: none;
   }
 }
@@ -35,15 +32,12 @@
   width: 50%;
   align-items: center;
   background-color: #864BFA;
-  /* background-color: #212121; */
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
 @media screen and (width < 700px) {
   .containerLoginInputs{
     width: 100%;
-    /* border-top-right-radius: 0px;
-    border-bottom-left-radius: 15px; */
     border-radius: 15px;
   }
 }
@@ -53,7 +47,7 @@
 }
 
 .logoAuta{
-  width: 60%;
+  width: 40%;
   height: auto;
   margin: 15% 0px 15% 0px;
 }

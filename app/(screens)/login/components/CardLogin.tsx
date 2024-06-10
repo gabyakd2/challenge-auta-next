@@ -9,12 +9,12 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./card-login.module.css";
 // Importacion de firebase
-import { aplicationFirebase, providerGoogle } from "@/app/credentials";
+import { aplicationFirebase } from "@/app/credentials";
 import {
   getAuth,
-  signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithEmailAndPassword
 } from "firebase/auth";
+import { signInWithGoogle } from "../services/signInWithGoogle";
 
 const auth = getAuth(aplicationFirebase);
 
@@ -42,16 +42,9 @@ function CardLogin() {
     }
   };
 
-  const signInWithGoogle = async () => {
-    try {
-      const infoAccountGoogle = await signInWithPopup(auth, providerGoogle);
-      if (infoAccountGoogle.user) {
-        router.push("/");
-      }
-    } catch (error) {
-      console.error(error)
-      setErrorLogin("El usuario o contraseña no coinciden");
-    }
+  //handler para iniciar sesion con google
+  const handleSignInWithGoogle = async () => {
+    await signInWithGoogle(router, setErrorLogin);
   };
 
   return (
@@ -116,7 +109,7 @@ function CardLogin() {
                 variant="contained"
                 fullWidth
                 sx={{ color: "#864BFA", fontWeight: "bold" }}
-                onClick={signInWithGoogle}
+                onClick={handleSignInWithGoogle}
               >
                 <GoogleIcon />
               </Button>

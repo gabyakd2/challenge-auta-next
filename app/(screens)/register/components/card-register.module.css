@@ -1,7 +1,6 @@
 .containerCardRegister{
   display: flex;
   width: 70%;
-  height: 70%;
   text-align: center;
 }
 @media screen and (width < 700px) {
@@ -17,6 +16,8 @@
   background-image: url("../../../images/bgregister3.png");
   background-position: center;
   background-size: cover;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 @media screen and (width < 700px) {
   .containerRegisterText{
@@ -31,6 +32,8 @@
   align-items: center;
   background-color: #864BFA;
   padding: 2% 5% 2% 5%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 @media screen and (width < 700px) {
   .containerRegisterInputs{

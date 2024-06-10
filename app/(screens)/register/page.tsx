@@ -4,7 +4,10 @@ import CardRegister from "./components/CardRegister";
 
 function RegisterPage() {
   return (
-    <div className={styles.containerMainLogin}>
+    <div className={styles.containerRegister}>
+      <h2 className={styles.titleRegister}>
+        Registrate y viví la experiencia
+      </h2>
       <CardRegister />
     </div>
   )

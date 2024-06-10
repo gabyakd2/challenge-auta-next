@@ -5,4 +5,14 @@
   z-index: 1;
   align-items: center;
   height: 100vh;
+  background-image: url("../../../images/addcart.png") ;
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (width < 800px) {
+  .containerMainCardCatalogue{
+    flex-direction: column;
+    height: 145vh;
+  }
 }

@@ -1,4 +1,31 @@
-.containerMainLogin{
+.containerRegister {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  gap: 16px;
   display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 7% 4% 0 4%;
+  height: 100vh;
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0) 50%
+    ),
+    url("https://www.peugeot.com.ar/content/dam/peugeot/argentina/b2c/our-range/3008-suv/nuevo-3008/1a-Mastehead_2880x1620_Desktop3008.jpg?imwidth=1182");
+  background-size: cover;
+  background-position: center;
+}
+@media screen and (width < 800px) {
+  .containerRegister{
+    flex-direction: column;
+    height: 165vh;
+  }
+}
+
+.titleRegister {
+  font-weight: bold;
+  color: white;
+  text-align: center;
 }
