@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Tienda de autos
 
-First, run the development server:
+Esta aplicación esta realizada con Next JS (react), firestore, material UI, context API, swalalert (para alertas).
+
+
+## Correr la aplicación
+
+Clonar repositorio
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/gabyakd2/challenge-auta-next.git
 ```
+```bash
+  npm install
+```
+```bash
+  npm run dev
+```
+Se abrirá en el puerto localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura de carpetas y archivos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*(screens): Se encuentran todas las pantallas de la aplicación. Dentro de ellas, cada "page.tsx" con los componentes correspondientes a cada una.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+*components: Acá se encuentra el navbar. Esta por fuera ya que lo uso en toda la aplicación. La idea es que si en un futuro necesito más componentes para usar en toda mi app, vayan acá.
 
-## Learn More
+*context: Se encuentran dos contexts API, uno para autenticar la sesión y el otro para compartir lista de favoritos.
 
-To learn more about Next.js, take a look at the following resources:
+*hook: Se encuentran customs hooks: 
+ 
+    -useAuth (para traer la info del usuario logueado). 
+    -useGetVehicleList (trae los vehículos de mi db).
+    -useSignOut (hook para cerrar la sesión).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*images: Imagenes que se usan en la app (lo ideal seria guardarlas en la db de firestore o en cloudinary).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+*interfaces: Se encuentra la interfaz de los vehículos. (Esta de manera "global" por si en un futuro debo añadir mas interfaces que se utilicen en varias partes).
 
-## Deploy on Vercel
+*credentials: este archivo tiene toda la configuración de firestore.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Autor
+
+- Gabriel Saldaña :D
+
