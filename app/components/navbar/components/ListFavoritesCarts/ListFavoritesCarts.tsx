@@ -10,6 +10,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavoriteContext } from "@/app/context/FavoritesCartsContext";
 import { IDataCard } from "@/app/interfaces/IDataCard";
 import Image from "next/image";
+import styles from "./list-favorites.module.css"
 
 function ListFavoritesCarts() {
   const [open, setOpen] = React.useState(false);
@@ -24,18 +25,20 @@ function ListFavoritesCarts() {
       <Button onClick={toggleDrawer(true)}><FavoriteIcon /></Button>
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
-          <p>
+          <p className={styles.titleFavs}>
             Favoritos
           </p> 
           <List>
-            {favorites.map(({id, imageCard, titleCard}: IDataCard) => (
+            {favorites.length > 0 ? favorites.map(({id, imageCard, titleCard}: IDataCard) => (
               <ListItem key={id}>
                 <ListItemButton sx={{gap: "15px"}}>
                 {imageCard && <Image src={imageCard} width={80} height={50} alt={titleCard} />}
                   <ListItemText primary={titleCard} />
                 </ListItemButton>
               </ListItem>
-            ))}
+            )): (
+              <p className={styles.textFavs}>No hay favoritos</p>
+            )}
           </List>
         </Box>
       </Drawer>
