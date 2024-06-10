@@ -39,8 +39,32 @@ Se abrirá en el puerto localhost:3000
 
 *credentials: este archivo tiene toda la configuración de firestore.
 
+## Tareas realizadas
 
+* Marcar como favorito una unidad
+* Consultar sobre la unidad
+* Agregar una unidad
+* Eliminar una unidad
+* Filtros
+* Usuarios almacenados en la db pudiendo loguearse con correo y constraseña o google y registrarse por correo y contraseña
+* Responsive
+* Manejo de errores
 
+## Consideraciones a tener en cuenta
+Para ver los mails enviados a través de la aplicación, entrar a outlook y colocar la siguiente cuenta
+
+email: vehicleadau@hotmail.com
+constraseña: Prueba.$10
+
+Usuario admin de la aplicación:
+email: admin@gmail.com
+constraseña: Prueba.$10
+
+Usuario consumidor final de la aplicación:
+email: gabriel1@gmail.com
+constraseña: Prueba.$10
+
+(O crear uno)
 
 ## Autor
 
