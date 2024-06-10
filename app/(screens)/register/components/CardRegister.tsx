@@ -6,6 +6,7 @@ import { checkBoxStyle, textFieldStyles } from "./InputsStyles";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./card-register.module.css";
+import Swal from "sweetalert2";
 // imports de firebase
 import { aplicationFirebase, db } from "../../../credentials";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -40,8 +41,16 @@ function CardRegister() {
         passwordUserRegister,
         isAdmin: false,
       });
-      router.push("/")
-      console.log("El usuario fue registrado");
+      Swal.fire({
+        title: "¡Exito!",
+        text: "Usuario registrado con éxito",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/")
+        }
+      });
     } catch (error) {
       console.error(error);
     }

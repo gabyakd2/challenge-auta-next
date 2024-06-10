@@ -5,13 +5,13 @@ import { Button, TextField } from "@mui/material";
 import Image from "next/image";
 import styles from "./card-form.module.css";
 import { textFieldStyles } from "./InputsStyles";
+import Swal from "sweetalert2";
 
 function ContactForm() {
-  // const [errorLogin, setErrorLogin] = useState<string>("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const form = useRef<any>(null);
-  
-  const sendEmail = (e: { preventDefault: () => void; }) => {
+
+  const sendEmail = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     emailjs
@@ -20,15 +20,26 @@ function ContactForm() {
       })
       .then(
         () => {
-          console.log("SUCCESS!");
+          Swal.fire({
+            title: "¡EXITO!",
+            text: "Su mensaje fue envioado con éxito",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
         },
         (error) => {
+          Swal.fire({
+            title: "¡Error!",
+            text: "Ocurrió un problema al enviar su mensaje",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
           console.log("FAILED...", error.text);
-        },
+        }
       );
   };
-  // vehicleadau@hotmail.com emailjs:adminvehicleau 
-  
+  // vehicleadau@hotmail.com emailjs:adminvehicleau
+
   return (
     <div className={styles.containerCardRegister}>
       <div className={styles.containerRegisterInputs}>
