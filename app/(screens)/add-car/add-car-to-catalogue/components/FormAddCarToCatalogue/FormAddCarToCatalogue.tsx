@@ -13,6 +13,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db, uploadImageCardCars } from "@/app/credentials";
 import { selectMui, textFieldStyles } from "./InputsStyles";
 import { IDataCard } from "@/app/interfaces/IDataCard";
+import Swal from "sweetalert2";
 
 function FormAddCarToCatalogue() {
   const typesCars = ["SUV", "Auto", "Furgoneta", "Furgoneta pequeña"];
@@ -35,9 +36,21 @@ function FormAddCarToCatalogue() {
         imageCard: imgUrl,
       };
       await addVehicleToCard(dataVehicleCard);
+      Swal.fire({
+        title: "¡Exito!",
+        text: "Vehículo agregado con éxito",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
       reset();
     } catch (error) {
       console.error(error);
+      Swal.fire({
+        title: "¡Error!",
+        text: "Ocurrió un problema al añadir un vehículo",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
